@@ -33,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -105,6 +106,7 @@ fun Fundamental() {
                         backgroundColor = Color.White
                     )
                 )
+                SimpleWidgetColumn()
                 CircularProgressIndicator(
                     color = Color.Green,
                     strokeWidth = 6.dp
@@ -125,6 +127,27 @@ fun Fundamental() {
             }
         }
     }
+}
+
+@Composable
+fun SimpleWidgetColumn() {
+    // 一个State的例子：解决了TextField输入无法上屏的问题
+    var userInput by rememberSaveable { mutableStateOf("") }
+    Column {
+        TextFieldWidget(userInput, onValueChange = {newValue -> userInput = newValue})
+    }
+}
+
+@Composable
+fun TextFieldWidget(value:String, onValueChange: (String) -> Unit, modifier: Modifier = Modifier) {
+    TextField(
+        modifier = modifier,
+        value = value, onValueChange = onValueChange, placeholder = {
+            Text(text = "Type something here")
+        }, colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color.White
+        )
+    )
 }
 
 data class Message(val author: String, val body: String)

@@ -3,6 +3,9 @@ package com.example.composeapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.ui.Modifier
+import com.example.composeapp.edge.CallCounter_Hoisting
 import com.example.composeapp.edge.Fundamental
 
 /**
@@ -14,7 +17,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Fundamental()
+//            Fundamental()
+            CallCounter_Hoisting(modifier = Modifier.fillMaxWidth())
         }
     }
 }
