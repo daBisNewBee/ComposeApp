@@ -1,0 +1,2 @@
+- 某某Compose控件对应是的View中的什么，那么有些朋友可能会产生更多的疑问：RecyclerView在Compose中的替代品是什么？DrawerLayout在Compose中的替代品是什么？
+- https://www.jetpackcompose.app/What-is-the-equivalent-of-DrawerLayout-in-Jetpack-Compose
