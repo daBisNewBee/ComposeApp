@@ -53,6 +53,9 @@ import com.example.composeapp.ui.theme.ComposeAppTheme
 fun Fundamental() {
     val scrollState = rememberScrollState() // 它是用于保证在手机横竖屏旋转的情况下滚动位置不会丢失的
     val configuration = LocalConfiguration.current
+    val value = LocalExample.current
+    val valueNoProvider = LocalExampleNoProvider.current
+    val counter = LocalCounter.current
 
     // 只有在 “@Composable”中才能调用“@Composable”;
     // "@Composable" 函数名必须大写开头
@@ -78,6 +81,9 @@ fun Fundamental() {
                         Message("22", "22-6"),
                     ),
                 )
+                Text(text = "Message from compositionLocalOf + CompositionLocalProvider: $value")
+                Text(text = "Message from compositionLocalOf without Provider: $valueNoProvider")
+                Text(text = "From staticCompositionLocalOf: ${counter.value}")
                 Text(text = "这是自定义Text")
                 Greeting(name = "这是组合函数")
                 // A surface container using the 'background' color from the theme
@@ -88,7 +94,9 @@ fun Fundamental() {
                     Greeting("Android 1234")
                 }
                 val context = LocalContext.current
+                val counter = LocalCounter.current
                 Button(onClick = {
+                    counter.value++
                     Toast.makeText(context, "Button clicked!", Toast.LENGTH_SHORT).show()
                 }, modifier = Modifier.align(Alignment.End)) { // 子项不同于父项Column的对齐方式
                     Text(
