@@ -30,6 +30,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,6 +49,15 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.composeapp.R
 import com.example.composeapp.ui.theme.ComposeAppTheme
+
+@Composable
+fun FundamentalWithProvider() {
+    // 一次定义，层层使用，避免显示传递参数
+    CompositionLocalProvider(LocalExample provides "Hello world!") {
+        // 只影响"Fundamental"的子树：在这个"Fundamental"树中，LocalExample 的值是 "Hello, World!"
+        Fundamental()
+    }
+}
 
 @Composable
 fun Fundamental() {
